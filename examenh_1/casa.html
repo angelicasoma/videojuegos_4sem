@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DEF y USE</title>
+     <script src='https://www.x3dom.org/x3dom/release/x3dom-full.js'></script>
+    <link rel='stylesheet' href='https://www.x3dom.org/x3dom/release/x3dom.css'>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: sans-serif;
+            margin: 0;
+        }
+
+        .fondo {
+            background-color: black;
+            width: 100vw;
+            height: 100vh;
+}
+</style>
+</head>
+<body>
+  <X3D class="fondo">
+<Scene>
+
+<Transform DEF="plantab">
+ <Transform DEF='Fila'> <!-- abre Fila 1-->
+    <Transform DEF='arco'>
+    <inline DEF="Arco" url="arco_medio.x3d"></inline>
+    </Transform>
+    
+     <Transform translation="0 0 0">
+      <shape USE="arco"/>
+    </Transform>
+
+    <!-- Copias -->
+
+    <Transform translation="8 0 0">
+        <Shape USE= "Arc"></Shape>
+      </Transform>
+      <Transform translation="16 0 0">
+        <Shape USE= "Arc"></Shape>
+      </Transform>
+      <Transform translation="24 0 0">
+        <Shape USE= "Arc"></Shape>
+      </Transform>
+      <Transform translation="31 0 0">
+        <Shape USE= "Arc"></Shape>
+      </Transform>
+</Transform> <!-- cierre de Fila  1-->
+
+<Transform translation="0 0 28"> <!-- Fila de enfrente -->
+    <Transform USE="Fila"> </Transform>
+    </Transform>
+  
+<Transform rotation="0 1 0 -1.57" translation="5 0 0"> <!-- Fila perpendicular 1-->
+    <Transform USE="Fila"> </Transform>
+</Transform>
+        
+<Transform rotation="0 1 0 -1.57" translation="28 0 0"> <!-- Fila perpendicular 2-->
+    <Transform USE="Fila"> </Transform>
+</Transform>
+
+</Transform>  
+<!--cierre_plantabaja-->
+
+<!--Primer piso-->
+
+<Transform translation="0 10 0">
+  <Transform USE="plantab"></Transform>
+</Transform>
+
+<!--Suelo-->
+
+<Transform rotation="1 0 0 -1.57" translation="15 -2 15 ">
+    <Shape>
+      <Appearance>
+        <ImageTexture url="imagenes/piso_1.webp"></ImageTexture>
+        <TextureTransform scale="10, 10 "></TextureTransform>
+      </Appearance>
+      <Box size="55 55 1"></Box>
+    </Shape>
+</Transform>
+
+<Transform rotation="1 0 0 -1.57" translation="15.5 13 15 ">
+    <Shape>
+      <Appearance>
+        <ImageTexture url="imagenes/piso_3.jpeg"></ImageTexture>
+        <TextureTransform scale="1, 5 "></TextureTransform>
+      </Appearance>
+      <Box size="40 39 1"></Box>
+    </Shape>
+</Transform>
+
+
+
+
+<!--Paredes-->
+<Transform DEF="conjunto">
+<Transform DEF="paredes">
+  <Transform rotation="0 0 0 -1.57" translation="15 5 -5 ">
+    <Shape>
+      <Appearance>
+        <ImageTexture url="imagenes/pared_l.jpeg"></ImageTexture>
+        <TextureTransform scale="1, 1 "></TextureTransform>
+      </Appearance>
+      <Box size="40 15 1"></Box>
+    </Shape>
+  </Transform>
+</Transform>
+
+<Transform translation="0.5 0 40" rotation="0 0 0 -1.57">
+  <Transform USE="paredes"></Transform>    
+</Transform>
+<!--Der-->
+
+<Transform translation="30 0 0" rotation="0 15 0 -1.57">
+  <Transform USE="paredes"></Transform>
+</Transform>
+<!--Fondo-->
+
+<Transform translation="-9 0 0" rotation="0 15 0 -1.57">
+  <Transform USE="paredes"></Transform>
+</Transform>
+<!--Frente-->
+</Transform>
+
+
+<Transform translation="0 15 0">
+    <Transform USE="conjunto"></Transform>
+  </Transform>
+
+
+
+<!--tejado-->
+
+<Transform DEF="techo">
+    <Transform rotation="-12 0 0 -1" translation="15 28 -5 ">
+      <Shape>
+        <Appearance>
+          <ImageTexture url="imagenes/tejado.jpeg"></ImageTexture>
+          <TextureTransform scale="1, 1 "></TextureTransform>
+        </Appearance>
+        <Box size="40 25 1"></Box>
+      </Shape>
+    </Transform>
+  </Transform>  
+
+  <Transform translation="0 40 60" rotation="-1 0 0 8.1">
+    <Transform USE="techo"></Transform>    
+  </Transform>
+  <!--Der -15 0 0 -1 -->
+
+  <Transform translation="30 0 0" rotation="0 5 0 -1.57">
+    <Transform USE="techo"></Transform>
+  </Transform>
+  <!--Fondo-->
+  <Transform translation="0 0 30" rotation="0 5 0 8">
+    <Transform USE="techo"></Transform>
+  </Transform>
+
+<!--extras-->
+
+<transform translation=" 9 -6 8" scale="0.3 0.3 0.3"rotation="0 0 0 -20"> 
+    <inline url="silla.x3d"></inline>
+</transform>
+
+<transform translation=" 20 -1 25" scale="3.8 5.8 3.8"rotation="20 0 50 0"> 
+  <inline url="cama.x3d"></inline>
+</transform>
+
+<transform translation=" 35 12 15" scale="15.8 10.8 15.8"rotation="20 0 50 0"> 
+  <inline url="siren.x3d"></inline>
+</transform>
+
+  
+  <!--Frente-->
+
+<!--fondo para cielo y tierra-->
+<!-- <Background skyColor="0.21 0.18 0.66,
+                      0.2 0.44 0.85,
+                      0.51 0.81 0.95,
+                      0.77 0.80 0.82"
+                      skyAngle="0.5 1.5 1.57"
+                      groundColor="0.6 0.7 0.1,
+                                    0.4 0.7 0.2,
+                                    0.1 0.6 0.1
+                                    00.3 0.1"
+                      groundAngle="0.8 1.5 1.57"> -->
+</Background>
+
+</Scene>
+  </X3D>  
+</body>
+</html>
