@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sol</title>
+    <script type='text/javascript' src='https://www.x3dom.org/download/x3dom.js'> </script> 
+    <link rel='stylesheet' type='text/css' href='https://www.x3dom.org/download/x3dom.css'>
+    <style>
+        body{
+            background: #000 url(imagenes/f_ojo.jpeg);
+            color: white;
+            font-family: sans-serif;
+        }
+        .fondo{
+            width: 90vw;
+            height: 90vh;
+            margin: auto;
+           
+        }
+        h1{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- <h1>Habitación de ojos</h1> -->
+    <x3d class="fondo">
+        <Scene>
+            <!-- animación de rotación para el sitema solar  -->
+        <transform DEF="SSolar" >
+            <Shape>
+                <Appearance>
+                    <!-- <Material diffuseColor='1 1 0'/> -->
+                    <imageTexture url='imagenes/ojo_azul.png'/>
+                </Appearance>
+                <!-- <Box></Box> -->
+                <!-- <Cone/> -->
+                <Sphere/>
+            </Shape>
+            
+            <!-- <Ojos grises/> -->
+            <transform translation='5 0 1' scale='0.5 0.5 0.5'>
+                <inline url='mercurio.x3d'></inline>
+            </transform>
+            
+            <transform translation='-2 5 1' scale='0.9 0.9 0.9'>
+                <inline url='mercurio.x3d'></inline>
+            </transform>
+
+            <transform translation='7 5 1' scale='0.3 0.3 0.3'>
+                <inline url='mercurio.x3d'></inline>
+            </transform>
+
+            <transform translation='-3 8 -6' scale='0.6 0.6 0.6'>
+                <inline url='mercurio.x3d'></inline>
+            </transform>
+
+            <transform translation='6 3 3' scale='0.6 0.6 0.6'>
+                <inline url='mercurio.x3d'></inline>
+            </transform>
+
+            <!-- ojos_verdes -->
+            <transform translation='-2.3 0 0' scale='0.8 0.8 0.8'>
+                <inline url='ojo_verde.x3d'></inline>
+            </transform>
+
+            <transform translation='5.3 4 0' scale='0.5 0.5 0.5'>
+                <inline url='ojo_verde.x3d'></inline>
+            </transform>
+
+            <transform translation='1 3 -1' scale='0.3 0.3 0.3'>
+                <inline url='ojo_verde.x3d'></inline>
+            </transform>
+
+            <transform translation='-5 8 6' scale='0.6 0.6 0.6'>
+                <inline url='ojo_verde.x3d'></inline>
+            </transform>
+
+            <transform translation='3 5 2' scale='0.7 0.7 0.7'>
+                <inline url='ojo_verde.x3d'></inline>
+            </transform>
+
+            <transform translation='-5 4 1' scale='0.6 0.6 0.6'>
+                <inline url='ojo_verde.x3d'></inline>
+            </transform>
+
+             <!-- ojos_venas -->
+            <transform translation='3 0 0 ' scale='0.7 0.7 0.7'>
+                <inline url='ojo_venas.x3d'></inline>
+            </transform>
+
+            <transform translation='-4 2 6 ' scale='0.5 0.5 0.5'>
+                <inline url='ojo_venas.x3d'></inline>
+            </transform>
+
+            <transform translation='6 7 -4 ' scale='0.7 0.7 0.7'>
+                <inline url='ojo_venas.x3d'></inline>
+            </transform>
+
+            <transform translation='0 3 3 ' scale='0.3 0.3 0.3'>
+                <inline url='ojo_venas.x3d'></inline>
+            </transform>
+
+             <!--ojos azul -->
+            <transform translation='-4 0 -4' scale='0.3 0.3 0.3'>
+                <inline url='ojo_azul.x3d'></inline>
+            </transform>
+
+            <transform translation='0 5 -3' scale='0.5 0.5 0.5'>
+                <inline url='ojo_azul.x3d'></inline>
+            </transform>
+
+            <transform translation='1 8 4' scale='0.8 0.8 0.8'>
+                <inline url='ojo_azul.x3d'></inline>
+            </transform>
+
+            <transform translation='0 5 9' scale='0.6 0.6 0.6'>
+                <inline url='ojo_azul.x3d'></inline>
+            </transform>
+
+
+            <transform translation="3 0 0" sacle="0.2 0.2 0.2">
+                <!-- <Shape>
+                    <Appearance>
+                    <imageTexture url='texturas/cluna.jpg'/>
+                    </Appearance>
+                    <Sphere/>
+                </Shape> -->
+            </transform>
+
+
+            <!-- Parámetros de animación: sensor de tiempo y cuál eje se animará -->
+            <timeSensor DEF='timerTL' cycleInterval='30' loop='true'></timeSensor>
+            <orientationInterpolator DEF='rotatorTL' 
+            key='
+            0 
+            0.5 
+            1' 
+            keyValue='
+            0 1 0 0 
+            0 1 0 3.14 
+            0 1 0 6.28'>
+                    </orientationInterpolator>
+        <!-- Cierre de SSolar -->
+        </transform>
+         <!-- ROUTE canaliza el sensor de tiempo y la rotación al transform -->
+			<ROUTE fromNode='timerTL' fromField='fraction_changed' toNode='rotatorTL' toField='set_fraction'></ROUTE>
+			<ROUTE fromNode='rotatorTL' fromField='value_changed' toNode='SSolar' toField='set_rotation'></ROUTE>
+
+        </Scene>
+    </x3d>
+
+</body>
+</html>
